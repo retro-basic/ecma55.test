@@ -1,0 +1,7 @@
+10 PRINT "INPUT A1, B$, C, D$";
+20 INPUT A1,B$,C,D$
+30 PRINT "A1 = "; A1
+40 PRINT "B$ = "; B$
+50 PRINT "C  = "; C
+60 PRINT "D$ = "; D$
+70 END

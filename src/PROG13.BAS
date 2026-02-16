@@ -1,0 +1,4 @@
+
+10 RANDOMIZE
+
+20 END

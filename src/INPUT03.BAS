@@ -1,0 +1,3 @@
+10 INPUT A(2,3)
+20 PRINT A(2,3)
+30 END

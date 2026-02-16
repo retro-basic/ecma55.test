@@ -1,0 +1,19 @@
+100 PRINT "ABS(-2.4) = "; ABS(-2.4)
+110 PRINT "ATN( 0.5) = "; ATN( 0.5)
+120 PRINT "COS(-1.0) = "; COS(-1.0)
+130 PRINT "EXP( 3.1) = "; EXP( 3.1)
+140 PRINT "INT(-2.4) = "; INT(-2.4)
+150 PRINT "LOG(1000) = "; LOG(1000)
+160 PRINT "RND       = "; RND
+170 PRINT "RND       = "; RND
+180 PRINT "RND       = "; RND
+190 PRINT "RND       = "; RND
+200 PRINT "SGN(+1.1) = "; SGN(+1.1)
+210 PRINT "SGN(-1.1) = "; SGN(-1.1)
+220 PRINT "SGN( 0.0) = "; SGN( 0.0)
+230 PRINT "SIN( 0.0) = "; SIN( 0.0)
+240 PRINT "SIN( 3.1) = "; SIN( 3.1)
+250 PRINT "SIN( 3.2) = "; SIN( 3.2)
+260 PRINT "SQR(16.0) = "; SQR(16.0)
+270 PRINT "TAN( 0.5) = "; TAN( 0.5)
+280 END

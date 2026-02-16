@@ -1,0 +1,1264 @@
+
+===============================================================================
+ ____      _                   ____    _    ____ ___ ____ 
+|  _ \ ___| |_ _ __ ___       | __ )  / \  / ___|_ _/ ___|
+| |_) / _ \ __| '__/ _ \ _____|  _ \ / _ \ \___ \| | |    
+|  _ <  __/ |_| | | (_) |_____| |_) / ___ \ ___) | | |___ 
+|_| \_\___|\__|_|  \___/      |____/_/   \_\____/___\____|
+
+
+ECMA55.TEST - ECMA-55 Minimal BASIC Test Programs
+
+Test Program Description
+
+Repository:  <http://source.retro-basic.net/ecma55.test>
+File:        /doc/test-doc.txt//
+Version:     01.00!00
+Compliance:  Retro-Frame 1.0
+License:     MIT
+
+Copyright (c) 2026 Ingo Boehmer <ingo@retro-leisure.net>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+===============================================================================
+
+
+Change history
+-------------------------------------------------------------------------------
+
+2026-02-16 : 01.00!00 : Ingo
+
+  Draft.
+
+
+Contents
+-------------------------------------------------------------------------------
+
+ 1. INTRODUCTION
+     1.1  Background
+     1.2  Scope
+     1.3  References
+
+ 2. ARRAYS (ECMA-55 CHAPTERS 7 AND 18)
+     2.1  ARRAY01.BAS - OPTION BASE 0
+     2.2  ARRAY02.BAS - OPTION BASE 1
+     2.3  ARRAY03.BAS - OPTION BASE N
+     2.4  ARRAY04.BAS - OPTION 0
+     2.5  ARRAY05.BAS - multiple OPTION BASE statements
+     2.6  ARRAY06.BAS - implicitly defined array and subscript out of range
+     2.7  ARRAY07.BAS - explicitly defined array and subscript out of range
+
+ 3. CHARACTERS AND STRINGS, REMARK STATEMENT (ECMA-55 CHAPTERS 4 AND 19)
+     3.1  CHAR01.BAS - REM and PRINT using conforming character set
+     3.2  CHAR02.BAS - REM and PRINT using lowercase letters
+     3.3  CHAR03.BAS - REM and PRINT using non-ASCII letters
+
+ 4. CONTROL STATEMENTS (ECMA-55 CHAPTER 12)
+     4.1  CTRL01.BAS - GOTO 0
+     4.2  CTRL02.BAS - GOTO non-existing backward line number
+     4.3  CTRL03.BAS - GOTO current line number
+     4.4  CTRL04.BAS - GOTO non-existing forward line number before end-line
+     4.5  CTRL05.BAS - GOTO end-line
+     4.6  CTRL06.BAS - GOTO non-existing forward line number after end-line
+     4.7  CTRL07.BAS - Simple IF loop
+     4.8  CTRL08.BAS - Simple IF loop no space
+     4.9  CTRL09.BAS - Simple loop with GOSUB after loop
+     4.10 CTRL10.BAS - Simple loop with GO SUB before loop
+     4.11 CTRL11.BAS - ON GOTO 0
+     4.12 CTRL12.BAS - ON GOTO non-existing backward line number
+     4.13 CTRL13.BAS - ON GOTO current line number
+     4.14 CTRL14.BAS - ON GOTO non-existing forward line number before end-line
+     4.15 CTRL15.BAS - ON GOTO end-line
+     4.16 CTRL16.BAS - ON GOTO non-existing forward line number after end-line
+     4.17 CTRL17.BAS - Simple ON GOTO statements
+     4.18 CTRL18.BAS - Simple GOSUB statements
+
+ 5. DATA AND READ STATEMENTS (ECMA-55 CHAPTERS 16 AND 17)
+     5.1  DATA01.BAS - Unquoted DATA and numeric READ
+     5.2  DATA02.BAS - READ without DATA
+     5.3  DATA03.BAS - READ after end of DATA
+     5.4  DATA04.BAS - RESTORE
+     5.5  DATA05.BAS - Quoted and unquoted DATA on string READ
+     5.6  DATA06.BAS - Quoted and unquoted DATA on numeric READ
+
+ 6. USER DEFINED FUNCTIONS (ECMA-55 CHAPTER 10)
+     6.1  DEF01.BAS - Constant functions with different spaces
+     6.2  DEF02.BAS - Function without parameter
+     6.3  DEF03.BAS - Function with parameter using same name as a variable
+     6.4  DEF04.BAS - Functions which use other user defined functions
+
+ 7. EXPRESSIONS (ECMA-55 CHAPTER 8)
+     7.1  EXPR01.BAS - Simple operator expressions with two operands
+     7.2  EXPR02.BAS - Simple use of built-in functions
+     7.3  EXPR03.BAS - More complex operator expressions
+
+ 8. FOR AND NEXT STATEMENTS (ECMA-55 CHAPTER 13)
+     8.1  FOR01.BAS - Simple loop to print numbers from 1 to 5
+     8.2  FOR02.BAS - Simple loop to print numbers from 5 to 1
+     8.3  FOR03.BAS - Loop to print numbers from 1 to 5 using GOSUB
+     8.4  FOR04.BAS - GOTO from for-body to for-line
+     8.5  FOR05.BAS - GOTO into for-body
+     8.6  FOR06.BAS - Nested loops
+     8.7  FOR07.BAS - Interleaved nested loops
+     8.8  FOR07.BAS - Conditionally skipping loop
+
+ 9. INPUT STATEMENT (ECMA-55 CHAPTER 15)
+     9.1  INPUT01.BAS - Simple string input and echo
+     9.2  INPUT02.BAS - Simple numeric input and echo
+     9.3  INPUT03.BAS - Input of numeric array element and echo
+     9.4  INPUT04.BAS - Input of multiple string and numeric variables
+
+10. PRINT STATEMENT AND CONSTANTS (ECMA-55 CHAPTERS 6 AND 14)
+    10.1  PRINT01.BAS - Simple string output
+    10.2  PRINT02.BAS - Simple string output trailed by semicolon
+    10.3  PRINT03.BAS - String output concatenated by semicolons
+    10.4  PRINT04.BAS - String output concatenated and trailed by semicolons
+    10.5  PRINT05.BAS - Integer number output
+    10.6  PRINT06.BAS - Floating number output
+
+11. PROGRAM STRUCTURE (ECMA-55 CHAPTER 5)
+    11.1  PROG01.BAS - Empty file
+    11.2  PROG02.BAS - File containing "TEST" only
+    11.3  PROG03.BAS - File containing "0" only
+    11.4  PROG04.BAS - File containing "0 TEST" only
+    11.5  PROG05.BAS - File containing "10000 TEST" only
+    11.6  PROG06.BAS - File containing "10X" only
+    11.7  PROG07.BAS - File containing "10 TEST" only
+    11.8  PROG08.BAS - REM with edging program line length
+    11.9  PROG09.BAS - Duplicate end-lines
+    11.10 PROG10.BAS - Statement after end-line
+    11.11 PROG11.BAS - Simple valid program but line numbers not in order
+    11.12 PROG12.BAS - File containing end-line only
+    11.13 PROG13.BAS - Simple valid program with empty lines
+
+
+
+1. INTRODUCTION
+===============================================================================
+
+
+1.1 Background
+-------------------------------------------------------------------------------
+
+This repository provides small Minimal BASIC programs which are intended to
+test the behavior of ECMA-55 conforming (see [ECMA55], appendix 3) interpreters
+(e.g. the Retro ECMA-55-compliant Minimal BASIC Interpreter, see [RECMA55]).
+
+While some programs are always expected to fail and other programs are always
+expected to run in a precisely defined manner, some programs might depend on
+"implementation-defined features" (see [ECMA55], appendix 4).
+
+Development of this software is subject to Retro-BASIC and complies to the
+[RETRO-FRAME COMMON DOCUMENTATION].
+
+
+1.2 Scope
+-------------------------------------------------------------------------------
+
+This document describes for each test program its intention (what feature is
+subject to test) and the expected behavior in terms of ECMA-55 conformance. In
+addition, there are some demo programs which do not aim at specific features.
+
+Information about conformance to other BASIC dialects is not provided.
+
+Each chapter regarding test programs refers to one or more chapters of ECMA-55.
+However, the number and even the order of the chapters of this document may
+differ. All test programs covered by the same chapter use the same prefix in
+the file names and are numbered according the sub-chapter number except that
+the program file names use a leading zero for numbers below 10. The capters are
+orderd by name of the prefix.
+
+
+1.3 References
+-------------------------------------------------------------------------------
+
+[ECMA55]
+ECMA-55 Minimal BASIC standard (withdrawn), European Computer Manufacturers
+Association, January 1978, see
+<https://ecma-international.org/publications-and-standards/standards/ecma-55/>.
+
+[RECMA55]
+Retro ECMA-55-compliant Minimal BASIC Interpreter, see
+<http://source.retro-c.net/comp.stdc.recma55>
+
+[RETRO-FRAME COMMON DOCUMENTATION]
+Retro-Frame Common Documentation, see <http://source.retro-frame.net/common>.
+
+
+
+2. ARRAYS (ECMA-55 CHAPTERS 7 AND 18)
+===============================================================================
+
+
+2.1 ARRAY01.BAS - OPTION BASE 0
+-------------------------------------------------------------------------------
+
+This program contains a valid OPTION BASE 0 and and END statement. It should
+run but does not nothing.
+
+
+2.2 ARRAY02.BAS - OPTION BASE 1
+-------------------------------------------------------------------------------
+
+This program contains a valid OPTION BASE 1 and and END statement. It should
+run but does not nothing.
+
+
+2.3 ARRAY03.BAS - OPTION BASE N
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 10 (input line 1) as OPTION BASE
+N is an invalid statement (variables are not allowed). This is considered a
+syntax error.
+
+
+2.4 ARRAY04.BAS - OPTION 0
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 10 (input line 1) as the "BASE"
+keyword is missing. This is considered a syntax error.
+
+
+2.5 ARRAY05.BAS - multiple OPTION BASE statements
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 20 (input line 2) as no more
+than one OPTION BASE statement is allowed. This is considered an assertion
+error.
+
+
+2.6 ARRAY06.BAS - implicitly defined array and subscript out of range
+-------------------------------------------------------------------------------
+
+This program implicitly defines A as an one-dimensional array. As implicitly
+defined arrays in absence of an OPTION BASE statement should have valid
+subscripts in the range 0..10, the following lines should be executed without
+an error:
+
+  10 LET A(0) = 0
+  20 LET A(1) = 1
+  30 LET A(10) = 1
+
+However, the following line should raise an subscript out of range error:
+
+  40 LET A(11) = 1
+
+This is considered a run-time error.
+
+
+2.7 ARRAY07.BAS - explicitly defined array and subscript out of range
+-------------------------------------------------------------------------------
+
+This program defines A as an one-dimensional array with bound 2. In absence of
+an OPTION BASE statement, valid subscripts should be in the range 0..2 and the
+following lines should be executed without an error:
+
+  20 LET A(0) = 0
+  30 LET A(1) = 1
+  40 LET A(2) = 2
+
+However, the following line should raise an subscript out of range error:
+
+  50 LET A(1E30) = 2
+
+This is considered a run-time error.
+
+
+
+3. CHARACTERS AND STRINGS, REMARK STATEMENT (ECMA-55 CHAPTERS 4 AND 19)
+===============================================================================
+
+
+3.1 CHAR01.BAS - REM and PRINT using conforming character set
+-------------------------------------------------------------------------------
+
+This program should always run successfully and just output
+
+  HELLO, WORLD!
+
+This fully ECMA-55 conformant string is used at line number 10 (input line 1)
+as a remark-string of a remark-statement and at line number 20 (input line 2)
+as a quoted-string of a print-statement.
+
+
+3.2 CHAR02.BAS - REM and PRINT using lowercase letters
+-------------------------------------------------------------------------------
+
+This program should fail at line number 10 (input line 1) if full ECMA-55
+conformance is enforced because lower letters are used.
+
+However, if lowercase characters are accepted and translated to uppercase
+characters, the program should output
+
+  HELLO, WORLD!
+
+If lowercase characters are accepted but not translated, the program should
+output
+
+  Hello, world!
+
+This ECMA-55 non-conformant string is used at line number 10 (input line 1) as
+a remark-string of a remark-statement and at line number 20 (input line 2) as a
+quoted-string of a print-statement.
+
+
+3.3 CHAR03.BAS - REM and PRINT using non-ASCII letters
+-------------------------------------------------------------------------------
+
+This program should fail if ECMA-55 conformance is enforced because non-ASCII
+characters are used.
+
+However, if Unicode characters are accepted, the program should output "Hello!"
+in German, Spanish, Russian and Chinese.
+
+The ECMA-55 non-conformant strings are used as remark-strings of remark-
+statements respective quoted-strings of print-statements at
+
+- line numbers 10 and 20 (input lines 1 and 2) using lowercase ASCII characters
+- line numbers 30 and 40 (input lines 3 and 4) using character 0x41
+- line numbers 50 and 60 (input lines 5 and 6) using cyrillic characters
+- line numbers 70 and 80 (input lines 7 and 8) using chinese characters
+
+Thus, if full ECMA-55 conformance is enforced, this program should fail at line
+number 10 (input line 1) because lower letters are used. If Unicode, ANSI or
+ASCII codepages 437 or 850 but no codepoints greater than 0xFF are accepted,
+this program should fail at line number 30 (input line 3).
+
+
+
+4. CONTROL STATEMENTS (ECMA-55 CHAPTER 12)
+===============================================================================
+
+
+4.1 CTRL01.BAS - GOTO 0
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 10 (input line 1) as 0 is not a
+valid line number. This is considered a syntax error.
+
+
+4.2 CTRL02.BAS - GOTO non-existing backward line number
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 10 (input line 1) as the jump
+target line does not exists. As the syntax is valid, it is considered an
+assertion or run-time error.
+
+
+4.3 CTRL03.BAS - GOTO current line number
+-------------------------------------------------------------------------------
+
+The this program results in an infinite loop. However, as it is a fully ECMA-55
+conforming program, it should execute but must be haltet by a system-dependent
+break command (e.g. Ctrl-C).
+
+
+4.4 CTRL04.BAS - GOTO non-existing forward line number before end-line
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 10 (input line 1) as the jump
+target line does not exists. As the syntax is valid, it is considered an
+assertion or run-time error.
+
+
+4.5 CTRL05.BAS - GOTO end-line
+-------------------------------------------------------------------------------
+
+This program should always run successfully but without any output.
+
+
+4.6 CTRL06.BAS - GOTO non-existing forward line number after end-line
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 10 (input line 1) as the jump
+target line number does not exists.
+
+
+4.7 CTRL07.BAS - Simple IF loop
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+   10
+   20
+   30
+   40
+   50
+
+According to ECMA-55, chapter 14.4, each number should be preceded as well as
+trailed by a space. However, the purpose of this program is to test control
+statements rather than print output.
+
+
+4.8 CTRL08.BAS - Simple IF loop no space
+-------------------------------------------------------------------------------
+
+This program should fail if full ECMA-55 conformance is enforced because there
+is no space between the keyword THEN and the jump target at line number 60
+(input line 6) as required by the standard.
+
+However, if spacing requirements are relaxed, the program might run and output
+the following sequence:
+
+   10
+   20
+   30
+   40
+   50
+
+According to ECMA-55, chapter 14.4, each number should be preceded as well as
+trailed by a space. However, the purpose of this program is to test control
+statements rather than print output.
+
+
+4.9 CTRL09.BAS - Simple loop with GOSUB after loop
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+   10
+   20
+   30
+   40
+   50
+
+According to ECMA-55, chapter 14.4, each number should be preceded as well as
+trailed by a space. However, the purpose of this program is to test control
+statements rather than print output.
+
+
+4.10 CTRL10.BAS - Simple loop with GO SUB before loop
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+   10
+   20
+   30
+   40
+   50
+
+According to ECMA-55, chapter 14.4, each number should be preceded as well as
+trailed by a space. However, the purpose of this program is to test control
+statements rather than print output.
+
+
+4.11 CTRL11.BAS - ON GOTO 0
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 10 (input line 1) as 0 is not a
+valid line number. This is considered a syntax error.
+
+
+4.12 CTRL12.BAS - ON GOTO non-existing backward line number
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 10 (input line 1) as the jump
+target line does not exists. As the syntax is valid, it is considered an
+assertion or run-time error.
+
+
+4.13 CTRL13.BAS - ON GOTO current line number
+-------------------------------------------------------------------------------
+
+The this program results in an infinite loop. However, as it is a fully ECMA-55
+conforming program, it should execute but must be haltet by a system-dependent
+break command (e.g. Ctrl-C).
+
+
+4.14 CTRL14.BAS - ON GOTO non-existing forward line number before end-line
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 10 (input line 1) as the jump
+target line does not exists. As the syntax is valid, it is considered an
+assertion or run-time error.
+
+
+4.15 CTRL15.BAS - ON GOTO end-line
+-------------------------------------------------------------------------------
+
+This program should always run successfully but without any output.
+
+
+4.16 CTRL16.BAS - ON GOTO non-existing forward line number after end-line
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 10 (input line 1) as the jump
+target line number does not exists.
+
+
+4.17 CTRL17.BAS - Simple ON GOTO statements
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+  100
+  200
+  400
+  300
+  500
+
+The list of line numbers of the ON GOTO statement have different but always
+valid spacing between the line number and the comma.
+
+
+4.18 CTRL18.BAS - Simple GOSUB statements
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+   1
+   102
+   202
+   303
+   403
+
+It uses nested GOSUB / RETURN statements.
+
+
+
+5. DATA AND READ STATEMENTS (ECMA-55 CHAPTERS 16 AND 17)
+===============================================================================
+
+
+5.1 DATA01.BAS - Unquoted DATA and numeric READ
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+   1              2              3
+
+The numbers are represented as a DATA sequence and read by two READ statements.
+
+
+5.2 DATA02.BAS - READ without DATA
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 10 (input line 1) as there is a
+READ statement without any DATA sequence. This is considered a run-time error.
+
+
+5.3 DATA03.BAS - READ after end of DATA
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 40 (input line 4) as there is a
+READ statement to read three numeric variables but only two values are still
+available in the DATA sequence. This is considered a run-time error.
+
+
+5.4 DATA04.BAS - RESTORE
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+   1              2              1              2              3
+
+The numbers are represented as a DATA sequence of four values. However, after
+two READ statements a RESTORE statement advises a subsequent READ statement
+with three numeric variables to go back to the beginning of the DATA sequence.
+
+
+5.5 DATA05.BAS - Quoted and unquoted DATA on string READ
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+  1
+  2
+  HELLO
+
+Note that there is no leading or trailing space in the output as the READ
+statement has three string variables while the frist value 1 is represented as
+an unquoted string and the others as quoted strings in the DATA sequence.
+
+
+5.6 DATA06.BAS - Quoted and unquoted DATA on numeric READ
+-------------------------------------------------------------------------------
+
+This program should start and output the following value:
+
+   1
+
+According to ECMA-55, chapter 14.4, the number should be preceded as well as
+trailed by a space as the READ statement uses a numeric variable for the value
+1 which is represented as an unquoted string in the DATA sequence.
+
+After that output, a subsequent READ statement using a numeric variable on the
+value 2 which is represented as a quoted string in the DATA sequence should
+fail at line number 40 (input line 4). This is considered a run-time error.
+
+However, if quoting requirements are relaxed, the program might accept the
+quoted numeric value and output it as well:
+
+   2
+
+In any case, a subsequent READ statement using a numeric variable on the value
+text "HELLO" which is represented as a quoted string in the DATA sequence
+should fail at line number 60 (input line 6). This is considered a run-time
+error.
+
+
+
+6. USER DEFINED FUNCTIONS (ECMA-55 CHAPTER 10)
+===============================================================================
+
+
+6.1 DEF01.BAS - Constant functions with different spaces
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following value:
+
+   103
+
+According to ECMA-55, chapter 14.4, each number should be preceded as well as
+trailed by a space. The value is calculated by summing up three user defined
+functions which return a fixed value of 1, 2.0 and 1E2 (i.e. 1, 2 and 100).
+
+
+6.2 DEF02.BAS - Function without parameter
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output 11 pseudo-random values,
+each greater or equal than 0 and less than 1 as a user defined function without
+argument calls the RND function.
+
+The RANDOMIZE statement may cause a user input before the output. Unless the
+same seed is supplied, each run of the program should output different values.
+
+
+6.3 DEF03.BAS - Function with parameter using same name as a variable
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+   1
+   2
+   5
+   10
+   17
+   26
+   37
+   50
+   65
+   82
+   101
+
+According to ECMA-55, chapter 14.4, each number should be preceded as well as
+trailed by a space. The values are calculated including a user defined function
+with an argument. The function uses two variables where one is the argument
+(although a global variable of the same name exists) and one is a global
+variable.
+
+
+6.4 DEF04.BAS - Functions which use other user defined functions
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+   0              1
+
+The first value is calculated using three user defined functions where one is
+called by the PRINT statement directly and the other ones be another user
+defined function. Each function has an argument with the same name as global
+variables. Thus, arguments and global variables must be referenced properly
+even on nested function calls.
+
+
+
+7. EXPRESSIONS (ECMA-55 CHAPTER 8)
+===============================================================================
+
+
+7.1 EXPR01.BAS - Simple operator expressions with two operands
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+  2 + 3 =  5
+  2 - 3 = -1
+  2 * 3 =  6
+  2 / 3 =  .666667
+  2 ^ 3 =  8
+
+While the operation is printed as a string, the last value in each line is
+calculated by the corresponding expression.
+
+
+7.2 EXPR02.BAS - Simple use of built-in functions
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+  ABS(-2.4) =  2.4
+  ATN( 0.5) =  .463648
+  COS(-1.0) =  .540302
+  EXP( 3.1) =  22.1979
+  INT(-2.4) = -3
+  LOG(1000) =  6.90776
+  RND       =  <value1>
+  RND       =  <value2>
+  RND       =  <value3>
+  RND       =  <value4>
+  SGN(+1.1) =  1
+  SGN(-1.1) = -1
+  SGN( 0.0) =  0
+  SIN( 0.0) =  0
+  SIN( 3.1) =  4.15808E-02
+  SIN( 3.2) = -5.83742E-02
+  SQR(16.0) =  4
+  TAN( 0.5) =  .546302
+
+While the operation is printed as a string, the last value in each line is
+calculated by the corresponding expression. Note that <value1>, <value2>,
+<value3> and <value4> may differ on each system. However, as not RANDOMIZE
+statement is used, the values should be the same on each run.
+
+
+7.3 EXPR03.BAS - More complex operator expressions
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+  A = 1 * 2 + 3 / 4 =  2.75 (2.75)
+  -3 ^ 2 / 2 - 1.5 = -6 (-6)
+  -1.5 + 1 / 2 ^ 2 = -1.25 (-1.25)
+  (-1.5+1)/((-5+4)*2)^2 = -.125 (-.125)
+  -1.5 - A + (-2) ^ 3 / 2 = -8.25 (-8.25)
+  B =  1.5 (1.5)
+  A * (3 + A ^ (B - (A / A)) + 1) + B / 2 - 3 13.3104 (13.3104)
+
+While the expression and the last value in parenthesis are printed as a
+string, the second last value in each line is calculated by the corresponding
+expression and should equal the value in parenthesis.
+
+
+8. FOR AND NEXT STATEMENTS (ECMA-55 CHAPTER 13)
+===============================================================================
+
+
+8.1 FOR01.BAS - Simple loop to print numbers from 1 to 5
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+   1
+   2
+   3
+   4
+   5
+
+The numbers are the control-variable of a FOR-NEXT statement from 1 to 5 with
+an implicit step of 1.
+
+
+8.2 FOR02.BAS - Simple loop to print numbers from 5 to 1
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+   5
+   4
+   3
+   2
+   1
+
+The numbers are the control-variable of a FOR-NEXT statement from 5 to 1 with a
+step of -1.
+
+
+8.3 FOR03.BAS - Loop to print numbers from 1 to 5 using GOSUB
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+   1
+   2
+   3
+   4
+   5
+
+The numbers are the control-variable of a FOR-NEXT statement from 1 to 5 with
+an implicit step of 1. However, the PRINT statement is outside the for-body and
+called by a GOSUB statement within.
+
+
+8.4 FOR04.BAS - GOTO from for-body to for-line
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+   1
+   1
+   2
+   3
+   4
+   5
+
+The numbers are the control-variable of a FOR-NEXT statement from 1 to 5 with
+an implicit step of 1. However, a global variable controls a single GOTO to the
+FOR statement once before the NEXT statement is reached.
+
+This should be allowed according to ECMA-55, chapter 13.4 although the for-line
+is not part of the for-body as transfer of control out of a for-body seems to
+be allowed (unlike transfer of control into a for-body).
+
+
+8.5 FOR05.BAS - GOTO into for-body
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 60 (input line 6) as there is a
+GOTO statement which transfers control into a for-body which is not allowed
+according to ECMA-55, chapter 13.4.
+
+However, if this condition is relaxed, the program may run and output the
+following sequence:
+
+   1
+   2
+   3
+   4
+   5
+
+The actual flow of control results in a program which behaves as the PRINT
+statement was called by a GOSUB statement and returns into the for-body by a
+RETURN statement.
+
+
+8.6 FOR06.BAS - Nested loops
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+   1              10             90
+   1              10             91
+   1              10             92
+   1              20             90
+   1              20             91
+   1              20             92
+   1              30             90
+   1              30             91
+   1              30             92
+   2              10             90
+   2              10             91
+   2              10             92
+   2              20             90
+   2              20             91
+   2              20             92
+   2              30             90
+   2              30             91
+   2              30             92
+   3              10             90
+   3              10             91
+   3              10             92
+   3              20             90
+   3              20             91
+   3              20             92
+   3              30             90
+   3              30             91
+   3              30             92
+   4              10             90
+   4              10             91
+   4              10             92
+   4              20             90
+   4              20             91
+   4              20             92
+   4              30             90
+   4              30             91
+   4              30             92
+   5              10             90
+   5              10             91
+   5              10             92
+   5              20             90
+   5              20             91
+   5              20             92
+   5              30             90
+   5              30             91
+   5              30             92
+
+The numbers are the control-variables of three nested FOR-NEXT statements using
+different start, end and step values.
+
+
+8.7 FOR07.BAS - Interleaved nested loops
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 60 (input line 6) as there is a
+NEXT statement with the control-variable of on outer for-block while a middle
+for-block has not been terminated (unlike an inner for-block). Thus, the both
+outer for-blocks are interleaved which is not allowed according to ECMA-55,
+chapter 13.4.
+
+
+8.8 FOR07.BAS - Conditionally skipping loop
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output the following sequence:
+
+   1              10             90
+   1              10             91
+   1              10             92
+   1              20             90
+   1              20             91
+   1              20             92
+   1              30             90
+   1              30             91
+   1              30             92
+   2              10             90
+   2              10             91
+   2              10             92
+   2              20             90
+   2              20             91
+   2              20             92
+   2              30             90
+   2              30             91
+   2              30             92
+   3              10             90
+   3              10             91
+   3              10             92
+   4              10             90
+   4              10             91
+   4              10             92
+   5              10             90
+   5              10             91
+   5              10             92
+
+The numbers are the control-variables of three nested FOR-NEXT statements using
+different start, end and step values. However, a conditional jump depending on
+the value of the outer control-variable is made which skips the NEXT statement
+of the inner for-body.
+
+This should be allowed according to ECMA-55, chapter 13.4 as transfer of
+control out of a for-body seems to be allowed (unlike transfer of control into
+a for-body).
+
+
+9. INPUT STATEMENT (ECMA-55 CHAPTER 15)
+===============================================================================
+
+
+9.1 INPUT01.BAS - Simple string input and echo
+-------------------------------------------------------------------------------
+
+This program should always run successfully and prompt for text user input
+which is echoed. Note that if characters which must not be part of an unquoted
+string are used on input, the entire input must be enclosed in double-quotes.
+
+
+9.2 INPUT02.BAS - Simple numeric input and echo
+-------------------------------------------------------------------------------
+
+This program should always run successfully and prompt for numeric user input
+which is echoed.
+
+
+9.3 INPUT03.BAS - Input of numeric array element and echo
+-------------------------------------------------------------------------------
+
+This program should always run successfully and prompt for numeric user input
+which is stored in an implicitly defined array and echoed.
+
+
+9.4 INPUT04.BAS - Input of multiple string and numeric variables
+-------------------------------------------------------------------------------
+
+This program should always run successfully and prompt for multiple user
+input consisting of a numeric, text, numeric and text value. While all values
+are read by a single INPUT statement, they are echoed by individual PRINT
+statements. Note that all values must be separated by commas and that text
+values may or may not be quoted strings.
+
+
+
+10. PRINT STATEMENT AND CONSTANTS (ECMA-55 CHAPTERS 6 AND 14)
+===============================================================================
+
+
+10.1 PRINT01.BAS - Simple string output
+-------------------------------------------------------------------------------
+
+This program should always run successfully and just output
+
+  HELLO, WORLD!
+
+The print-statement at line number 10 (input line 1) contains only one quoted-
+strings as a parameter. There should be a line break after the output. Note
+that there may be line breaks added by the interpreter or the operating system
+when the program terminates. Therefore, the output should be compared with the
+output of the program PRINT02.BAS.
+
+
+10.2 PRINT02.BAS - Simple string output trailed by semicolon
+-------------------------------------------------------------------------------
+
+This program should always run successfully and just output
+
+  HELLO, WORLD!
+
+The print-statement at line number 10 (input line 1) contains only one quoted-
+strings as a parameter, trailed by a semicolon. Thus, there should be no line
+break after the output. Note that there may be line breaks added by the
+interpreter or the operating system when the program terminates. Therefore, the
+output should be compared with the output of the program PRINT01.BAS.
+
+
+10.3 PRINT03.BAS - String output concatenated by semicolons
+-------------------------------------------------------------------------------
+
+This program should always run successfully and just output
+
+  HELLO, WORLD!
+
+The print-statement at line number 10 (input line 1) consists of three quoted-
+strings which are separated by a semicolon. There should be a line break after
+the output. Note that there may be line breaks added by the interpreter or the
+operating system when the program terminates. Therefore, the output should be
+compared with the output of the program PRINT04.BAS.
+
+
+10.4 PRINT04.BAS - String output concatenated and trailed by semicolons
+-------------------------------------------------------------------------------
+
+This program should always run successfully and just output
+
+  HELLO, WORLD!
+
+The print-statement at line number 10 (input line 1) consists of three quoted-
+strings which are separated by a semicolon and is trailed by three semicolons.
+Thus, there should be no line break after the output. Note that there may be
+line breaks added by the interpreter or the operating system when the program
+terminates. Therefore, the output should be compared with the output of the
+program PRINT03.BAS.
+
+
+10.5 PRINT05.BAS - Integer number output
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output
+
+   0
+   0
+   0
+   0
+   1
+  -1
+   1
+  -1
+   999999
+  -999999
+   999999
+  -999999
+   1.E+6
+  -1.E+6
+   1.E+6
+  -1.E+6
+   1.E+6
+  -1.E+6
+   1.E+6
+  -1.E+6
+   1.E+7
+  -1.E+7
+   1.E+7
+  -1.E+7
+   1.00001E+6
+  -1.00001E+6
+   1.00001E+6
+  -1.00001E+6
+   1.E+10
+  -1.E+10
+   1.E+10
+  -1.E+10
+   1.23457E+6
+  -1.23457E+6
+   1.23457E+6
+  -1.23457E+6
+   3
+  -1
+   3
+  -1
+
+Note that for explicit point scaled representation the significand may have
+trailing zeros and a one-digit exponent may have a leading zero.
+
+
+10.6 PRINT06.BAS - Floating number output
+-------------------------------------------------------------------------------
+
+This program should always run successfully and output
+
+   .000001
+   .000001
+  -.000001
+   1.E-7
+   1.E-7
+  -1.E-7
+   1.E-10
+   1.E-10
+  -1.E-10
+   123.45
+   123.45
+  -123.45
+   123.456
+   123.456
+  -123.456
+   123.457
+   123.457
+  -123.457
+   3.14159
+   3.14159
+  -3.14159
+   .00012
+   .00012
+  -.00012
+   .000012
+   .000012
+  -.000012
+   1.2E-6
+   1.2E-6
+  -1.2E-6
+   1.23456E-6
+   1.23456E-6
+  -1.23456E-6
+   .5
+  -.5
+   .333333
+  -.333333
+   .5
+  -.5
+   .333333
+  -.333333
+
+Note that for explicit point scaled representation the significand may have
+trailing zeros and a one-digit exponent may have a leading zero.
+
+
+
+11. PROGRAM STRUCTURE (ECMA-55 CHAPTER 5)
+===============================================================================
+
+
+11.1 PROG01.BAS - Empty file
+-------------------------------------------------------------------------------
+
+This program should fail at input line 1 if full ECMA-55 conformance is
+enforced because an end-line is missing. This might be a general, load or
+syntax error.
+
+However, if an end-line is not required, the program should run and terminate
+without any output.
+
+
+11.2 PROG02.BAS - File containing "TEST" only
+-------------------------------------------------------------------------------
+
+This program should always fail at input line 1 because a line number is
+expected and "TEST" is not a valid statement. This should be a load or syntax
+error.
+
+
+11.3 PROG03.BAS - File containing "0" only
+-------------------------------------------------------------------------------
+
+This program should always fail at input line 1 because 0 is not a valid line
+number and a statement is missing. This should be a load or syntax error.
+
+
+11.4 PROG04.BAS - File containing "0 TEST" only
+-------------------------------------------------------------------------------
+
+This program should always fail at input line 1 because 0 is not a valid line
+number and "TEST" is not a valid statement. This should be a load or syntax
+error.
+
+
+11.5 PROG05.BAS - File containing "10000 TEST" only
+-------------------------------------------------------------------------------
+
+This program should always fail at input line 1 because 10000 is not a valid
+line number and "TEST" is not a valid statement. This should be a load or
+syntax error.
+
+
+11.6 PROG06.BAS - File containing "10X" only
+-------------------------------------------------------------------------------
+
+This program should always fail at input line 1 because there is no space
+after the line number and "TEST" is not a valid statement. This should be a
+load or syntax error.
+
+
+11.7 PROG07.BAS - File containing "10 TEST" only
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 10 (input line 1) because "TEST"
+is not a valid statement. This should be a syntax error.
+
+
+11.8 PROG08.BAS - REM with edging program line length
+-------------------------------------------------------------------------------
+
+This program should fail at line number 10 (input line 2) if ECMA-55
+conformance is enforced because the second input line consists of a program
+line length of 73 characters while the line number 1 (input line 1) consists of
+a program line length of 72 characters and should be accepted.
+
+However, if longer program lines are accepted, the program should run and
+terminate without any output.
+
+
+11.9 PROG09.BAS - Duplicate end-lines
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 11 (input line 2) because there
+should be no more statements after an end-line. This should be a load or
+assertion error.
+
+
+11.10 PROG10.BAS - Statement after end-line
+-------------------------------------------------------------------------------
+
+This program should always fail at line number 11 (input line 2) because there
+should be no more statements after an end-line. This should be a load or
+assertion error.
+
+
+11.11 PROG11.BAS - Simple valid program but line numbers not in order
+-------------------------------------------------------------------------------
+
+This program should fail at line number 10 (input line 2) if full ECMA-55
+conformance is enforced because the lines are not in order.
+
+However, if unordered line are accepted, the program should run and terminate
+without any output.
+
+
+11.12 PROG12.BAS - File containing end-line only
+-------------------------------------------------------------------------------
+
+This program should always run and terminate without any output.
+
+
+11.13 PROG13.BAS - Simple valid program with empty lines
+-------------------------------------------------------------------------------
+
+This program should fail at input line 1 if full ECMA-55 conformance is
+enforced because each line shall begin with a line number.
+
+However, if empty lines are ignored, the program should run and terminate
+without any output.
